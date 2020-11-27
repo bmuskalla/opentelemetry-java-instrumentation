@@ -15,6 +15,12 @@
  */
 apply from: "$rootDir/gradle/instrumentation-library.gradle"
 
+tasks.withType(JavaCompile) {
+  options.release = null
+  sourceCompatibility = JavaVersion.toVersion(project.ext.release)
+  targetCompatibility = JavaVersion.toVersion(project.ext.release)
+}
+
 dependencies {
   compileOnly deps.opentelemetrySdk
 

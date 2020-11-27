@@ -17,15 +17,19 @@ test.dependsOn "rmic"
 // We cannot use "--release" javac option here because that will forbid importing "sun.rmi" package.
 // We also can't seem to use the toolchain without the "--release" option. So disable everything.
 
-java {
-  toolchain {
-    languageVersion = null
-  }
-}
+//java {
+//  toolchain {
+//    languageVersion = null
+//  }
+//}
 
 tasks.withType(JavaCompile) {
   options.release = null
+  sourceCompatibility = JavaVersion.toVersion(project.ext.release)
+  targetCompatibility = JavaVersion.toVersion(project.ext.release)
 }
 tasks.withType(GroovyCompile) {
   options.release = null
+  sourceCompatibility = JavaVersion.toVersion(project.ext.release)
+  targetCompatibility = JavaVersion.toVersion(project.ext.release)
 }

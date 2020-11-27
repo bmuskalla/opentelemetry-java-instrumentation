@@ -20,11 +20,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: Restore cache
-        uses: burrunan/gradle-cache-action@v1.5
-        with:
-          job-id: jdk11
-
       - name: Build
         uses: nick-invision/retry@v2.2.0
         env:
@@ -65,18 +60,13 @@ jobs:
         with:
           java-version: 11
 
-      - name: Restore cache
-        uses: burrunan/gradle-cache-action@v1.5
-        with:
-          job-id: jdk${{ matrix.java }}
-
       - name: Test
         uses: nick-invision/retry@v2.2.0
         env:
           S3_BUILD_CACHE_ACCESS_KEY_ID: ${{ secrets.S3_BUILD_CACHE_ACCESS_KEY_ID }}
           S3_BUILD_CACHE_SECRET_KEY: ${{ secrets.S3_BUILD_CACHE_SECRET_KEY }}
         with:
-          command: ./gradlew test -PtestJavaVersion=${{ matrix.java }} --stacktrace -Porg.gradle.java.installations.paths=${{ steps.setup-test-java.outputs.path }} -Porg.gradle.java.installations.auto-download=false
+          command: ./gradlew test -PtestJavaVersion=${{ matrix.java }} --stacktrace -Porg.gradle.java.installations.auto-download=true
           timeout_minutes: 180
           max_attempts: 3
 
@@ -99,11 +89,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Restore cache
-        uses: burrunan/gradle-cache-action@v1.5
-        with:
-          job-id: latestDepTest
 
       - name: Test
         uses: nick-invision/retry@v2.2.0
@@ -139,11 +124,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
-      - name: Restore cache
-        uses: burrunan/gradle-cache-action@v1.5
-        with:
-          job-id: jdk11
 
       - name: Publish snapshot
         env:

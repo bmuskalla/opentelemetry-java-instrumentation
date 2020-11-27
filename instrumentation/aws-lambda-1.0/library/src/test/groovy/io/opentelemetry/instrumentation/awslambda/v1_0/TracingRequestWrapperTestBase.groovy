@@ -18,7 +18,7 @@ import spock.lang.Shared
 class TracingRequestWrapperTestBase extends InstrumentationSpecification implements InstrumentationTestTrait {
 
   @Rule
-  public final EnvironmentVariables environmentVariables = new EnvironmentVariables()
+  public EnvironmentVariables environmentVariables = new EnvironmentVariables()
 
   @Shared
   TracingRequestWrapperBase wrapper

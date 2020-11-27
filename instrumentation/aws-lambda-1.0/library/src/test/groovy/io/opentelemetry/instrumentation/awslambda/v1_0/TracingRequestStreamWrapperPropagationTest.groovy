@@ -28,7 +28,7 @@ class TracingRequestStreamWrapperPropagationTest extends InstrumentationSpecific
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
 
   @Rule
-  public final EnvironmentVariables environmentVariables = new EnvironmentVariables()
+  public EnvironmentVariables environmentVariables = new EnvironmentVariables()
 
   static class TestRequestHandler implements RequestStreamHandler {
 

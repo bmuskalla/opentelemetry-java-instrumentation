@@ -23,7 +23,7 @@ import static io.opentelemetry.api.trace.Span.Kind.SERVER
 class TracingRequestStreamWrapperTest extends InstrumentationSpecification implements InstrumentationTestTrait {
 
   @Rule
-  public final EnvironmentVariables environmentVariables = new EnvironmentVariables()
+  public EnvironmentVariables environmentVariables = new EnvironmentVariables()
 
   static class TestRequestHandler implements RequestStreamHandler {
 
