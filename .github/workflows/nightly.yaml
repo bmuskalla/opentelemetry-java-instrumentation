@@ -20,6 +20,11 @@ jobs:
         with:
           java-version: 11
 
+      - name: Restore cache
+        uses: burrunan/gradle-cache-action@v1.5
+        with:
+          job-id: jdk11
+
       - name: Build
         uses: nick-invision/retry@v2.2.0
         env:
@@ -60,6 +65,11 @@ jobs:
         with:
           java-version: 11
 
+      - name: Restore cache
+        uses: burrunan/gradle-cache-action@v1.5
+        with:
+          job-id: jdk${{ matrix.java }}
+
       - name: Test
         uses: nick-invision/retry@v2.2.0
         env:
@@ -89,6 +99,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Restore cache
+        uses: burrunan/gradle-cache-action@v1.5
+        with:
+          job-id: latestDepTest
 
       - name: Test
         uses: nick-invision/retry@v2.2.0
@@ -124,6 +139,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Restore cache
+        uses: burrunan/gradle-cache-action@v1.5
+        with:
+          job-id: jdk11
 
       - name: Publish snapshot
         env:
